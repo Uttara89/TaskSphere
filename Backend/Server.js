@@ -13,7 +13,15 @@ const io = setupSocket(server); // Initialize Socket.IO
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+// Configure CORS from env (comma-separated origins). If not set, allow all (development).
+const allowedOrigins = (process.env.CORS_ORIGINS || '')
+    .split(',')
+    .map(o => o.trim())
+    .filter(Boolean);
+const corsOptions = allowedOrigins.length > 0
+    ? { origin: allowedOrigins, credentials: true }
+    : { origin: true, credentials: true };
+app.use(cors(corsOptions));
 
 // Make io instance available to routes
 app.set('io', io);
