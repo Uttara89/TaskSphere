@@ -2,6 +2,7 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { useUserContext } from '../context/UserContext'
 import Sidebar from '../componenets/Sidebar'
+import Navbar from '../componenets/Navbar'
 
 const Dashboard = () => {
   // Get user data from context (automatically syncs to MongoDB)
@@ -26,15 +27,21 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="flex">
-      {/* Sidebar */}
-      <Sidebar />
-
-      {/* Main Content */}
-      <div className="flex-1 p-4 ml-16 md:ml-56">
-        <Outlet /> {/* Render child routes here */}
+    <>
+      {/* Mobile-only navbar */}
+      <div className="md:hidden">
+        <Navbar />
       </div>
-    </div>
+      <div className="flex pt-14 md:pt-0">
+        {/* Sidebar */}
+        <Sidebar />
+
+        {/* Main Content */}
+        <div className="flex-1 p-4 ml-0 md:ml-56">
+          <Outlet /> {/* Render child routes here */}
+        </div>
+      </div>
+    </>
   )
 }
 

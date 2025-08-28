@@ -39,7 +39,7 @@ const Sidebar = () => {
   return (
    <>
    <div 
-     className="w-16 md:w-56 h-screen fixed z-10 left-0 top-0 p-4 bg-cover bg-center bg-no-repeat"
+     className="hidden md:block md:w-56 h-screen fixed z-10 left-0 top-0 p-4 bg-cover bg-center bg-no-repeat"
      style={{ backgroundImage: `url(${image})` }}
    >
      {/* Dark overlay for better text readability */}
